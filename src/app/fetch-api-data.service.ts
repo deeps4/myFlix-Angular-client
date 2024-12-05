@@ -12,6 +12,7 @@ import {
 } from './types';
 
 const apiUrl = 'https://my-movies-flix-05-b51bd5948ca6.herokuapp.com';
+
 @Injectable({
   providedIn: 'root',
 })
