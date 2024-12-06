@@ -6,6 +6,7 @@ import {
 import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
 import {
+  MovieDetails,
   UserLoginDetails,
   UserRegistrationDetails,
   UserUpdateDetails,
@@ -36,10 +37,10 @@ export class FetchApiDataService {
   }
 
   // Get all movies
-  public getAllMovies(): Observable<any> {
+  public getAllMovies(): Observable<MovieDetails[]> {
     const token = localStorage.getItem('token');
     return this.http
-      .get(`${apiUrl}/movies`, {
+      .get<MovieDetails[]>(`${apiUrl}/movies`, {
         headers: new HttpHeaders({
           Authorization: 'Bearer ' + token,
         }),
@@ -75,7 +76,7 @@ export class FetchApiDataService {
   public addFavouriteMovie(username: string, movieId: string): Observable<any> {
     const token = localStorage.getItem('token');
     return this.http
-      .post(`${apiUrl}/users/${username}/movies/${movieId}`, {
+      .post(`${apiUrl}/users/${username}/movies/${movieId}`, null, {
         headers: new HttpHeaders({
           Authorization: 'Bearer ' + token,
         }),

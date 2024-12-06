@@ -1,0 +1,27 @@
+.movies-container {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  padding: 24px;
+}
+
+mat-card {
+  width: 300px;
+  margin-right: 24px;
+}
+
+.movie-image {
+  border-radius: 24px;
+  width: 100%;
+  padding: 16px;
+}
+
+mat-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.favorite-icon-selected {
+  color: red;
+}

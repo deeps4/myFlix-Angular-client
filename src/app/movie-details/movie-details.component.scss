@@ -1,0 +1,13 @@
+mat-card {
+  min-height: 200px;
+}
+
+mat-card-title {
+  padding: 24px 0;
+}
+
+mat-card-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
