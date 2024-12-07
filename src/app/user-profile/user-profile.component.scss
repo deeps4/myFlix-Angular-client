@@ -1,0 +1,27 @@
+.profile-container {
+  padding-top: 60px;
+  width: 500px;
+  margin: auto;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+mat-card-header {
+  margin-bottom: 16px;
+}
+
+.delete-button:hover {
+  color: white;
+  background-color: rgb(188, 44, 44);
+}
+
+.delete-heading {
+  margin-bottom: 8px;
+}
+
+.delete-account-container {
+  display: flex;
+  align-items: flex-end;
+}

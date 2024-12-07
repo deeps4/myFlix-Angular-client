@@ -9,6 +9,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MovieDetailsComponent } from '../movie-details/movie-details.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
+import { AppStorageService } from '../app-storage.service';
 
 @Component({
   selector: 'app-movies-list',
@@ -32,7 +33,8 @@ export class MoviesListComponent implements OnInit {
   constructor(
     public fetchApiData: FetchApiDataService,
     public snackBar: MatSnackBar,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public appStorage: AppStorageService
   ) {}
 
   ngOnInit(): void {
@@ -41,9 +43,8 @@ export class MoviesListComponent implements OnInit {
   }
 
   getUserInfoFromStorage() {
-    const userFromStorage = localStorage.getItem('userData');
-    if (userFromStorage) {
-      const userData: UserDetails = JSON.parse(userFromStorage);
+    const userData = this.appStorage.getUserData();
+    if (userData) {
       this.favouriteMovies = userData.FavouriteMovies;
       this.username = userData.Username;
     }
@@ -76,9 +77,8 @@ export class MoviesListComponent implements OnInit {
 
   toggleFavouriteMovieSelection(movieId: string) {
     const subscriptionHandler = {
-      next: (result: UserDetails) => {
-        this.favouriteMovies = result.FavouriteMovies;
-        localStorage.setItem('userData', JSON.stringify(result));
+      next: () => {
+        this.getUserInfoFromStorage();
       },
       error: (error: string) => {
         this.snackBar.open(error, 'ok', { duration: 3000 });
