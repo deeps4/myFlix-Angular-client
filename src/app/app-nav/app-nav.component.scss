@@ -1,0 +1,28 @@
+mat-toolbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.app-nav-icon {
+  color: black;
+  font-size: 32px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.desktop-nav {
+  display: flex;
+}
+
+@media (min-width: 480px) {
+  .menu-icon {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .desktop-nav {
+    display: none;
+  }
+}

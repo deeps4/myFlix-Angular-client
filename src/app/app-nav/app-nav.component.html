@@ -1,0 +1,58 @@
+<mat-toolbar>
+    <a
+        class="app-nav-icon"
+        routerLink="/movies"
+    >
+        <mat-icon fontIcon="movie"></mat-icon>
+        <span>Movie Corner</span>
+    </a>
+    <button
+        mat-icon-button
+        [matMenuTriggerFor]="menu"
+        class="menu-icon"
+        aria-label="Example icon-button with menu icon"
+    >
+        <mat-icon>menu</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+        <a
+            mat-menu-item
+            routerLink="/movies"
+        >
+            Movies
+        </a>
+        <a
+            mat-menu-item
+            routerLink="/profile"
+        >
+            Profile
+        </a>
+        <button
+            mat-menu-item
+            (click)="handleLogout()"
+        >
+            Logout
+        </button>
+    </mat-menu>
+    <div class="desktop-nav">
+        <a
+            mat-menu-item
+            routerLink="/movies"
+        >
+            Movies
+        </a>
+        <a
+            mat-menu-item
+            routerLink="/profile"
+        >
+            Profile
+        </a>
+        <button
+            mat-menu-item
+            (click)="handleLogout()"
+        >
+            Logout
+        </button>
+    </div>
+
+</mat-toolbar>
