@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { Router } from '@angular/router';
 import { AppStorageService } from '../app-storage.service';
+import { MoviesListComponent } from '../movies-list/movies-list.component';
 
 @Component({
   selector: 'app-user-profile',
@@ -19,6 +20,7 @@ import { AppStorageService } from '../app-storage.service';
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
+    MoviesListComponent,
   ],
   templateUrl: './user-profile.component.html',
   styleUrl: './user-profile.component.scss',

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, input, OnInit } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatCardModule } from '@angular/material/card';
@@ -12,7 +12,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { AppStorageService } from '../app-storage.service';
 
 @Component({
-  selector: 'app-movies-list',
+  selector: 'movies-list',
   imports: [
     MatSnackBarModule,
     MatCardModule,
@@ -29,6 +29,7 @@ export class MoviesListComponent implements OnInit {
   movies: MovieDetails[] = [];
   favouriteMovies: string[] = [];
   username: string = '';
+  showOnlyFavouriteMovies = input.required<boolean>();
 
   constructor(
     public fetchApiData: FetchApiDataService,
@@ -53,7 +54,11 @@ export class MoviesListComponent implements OnInit {
   getMovies() {
     this.fetchApiData.getAllMovies().subscribe({
       next: (result) => {
-        this.movies = result;
+        if (this.showOnlyFavouriteMovies()) {
+          this.movies = this.filterFavouriteMovies(result);
+        } else {
+          this.movies = result;
+        }
       },
       error: (error) => {
         this.snackBar.open(error, 'ok', { duration: 3000 });
@@ -78,6 +83,7 @@ export class MoviesListComponent implements OnInit {
   toggleFavouriteMovieSelection(movieId: string) {
     const subscriptionHandler = {
       next: () => {
+        this.getMovies();
         this.getUserInfoFromStorage();
       },
       error: (error: string) => {
@@ -95,4 +101,19 @@ export class MoviesListComponent implements OnInit {
         .subscribe(subscriptionHandler);
     }
   }
+
+  filterFavouriteMovies(movies: MovieDetails[]) {
+    const filteredMovies = this.favouriteMovies.map((movieId) => {
+      const matchedMovie = movies.find((movie) => {
+        return movie._id === movieId;
+      });
+
+      return matchedMovie as MovieDetails;
+    });
+    return filteredMovies;
+  }
+
+  shouldShowEmptyMoviesMessage = (): boolean => {
+    return this.showOnlyFavouriteMovies() && this.favouriteMovies.length === 0;
+  };
 }
