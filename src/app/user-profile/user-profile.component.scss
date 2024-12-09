@@ -16,9 +16,14 @@ mat-card-header {
   margin-bottom: 16px;
 }
 
-.delete-button:hover {
-  color: white;
-  background-color: rgb(188, 44, 44);
+.delete-button.mdc-button.mat-mdc-outlined-button {
+  background-color: #f9dedc;
+  color: #8c1d18;
+
+  &:hover {
+    background-color: #8c1d18;
+    color: white;
+  }
 }
 
 .delete-heading {
