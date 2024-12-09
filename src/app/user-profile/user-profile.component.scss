@@ -29,3 +29,9 @@ mat-card-header {
   display: flex;
   align-items: flex-end;
 }
+
+@media (max-width: 768px) {
+  .profile-update-form {
+    width: 100%;
+  }
+}
