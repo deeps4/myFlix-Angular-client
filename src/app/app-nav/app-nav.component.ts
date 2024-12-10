@@ -13,7 +13,16 @@ import { AppStorageService } from '../app-storage.service';
 })
 export class AppNavComponent {
   constructor(public appStorage: AppStorageService) {}
-  handleLogout() {
+
+  /**
+   * Logs out the current user by clearing user data from storage.
+   *
+   * This method calls the `logoutUser` method from `appStorage` to remove any user-related data
+   * from the local storage or session, effectively logging the user out.
+   *
+   * @returns {void} This method does not return any value.
+   */
+  handleLogout(): void {
     this.appStorage.logoutUser();
   }
 }
